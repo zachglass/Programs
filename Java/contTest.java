@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * Created by mars on 11/2/16.
  */
-@TeleOp(name="contServo", group="Testing")
 @Disabled
+@TeleOp(name="contServo", group="Testing")
 public class contTest extends OpMode {
 
     private Servo contServo = null;

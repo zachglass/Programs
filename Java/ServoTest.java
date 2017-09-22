@@ -8,14 +8,13 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * Created by mars on 10/9/16.
  */
-@TeleOp(name="Servo", group="Testing")
 @Disabled
+@TeleOp(name="Servo", group="Testing")
 public class ServoTest extends OpMode {
 
     private Servo leftArmServo = null;
     private Servo rightArmServo = null;
 
-    @Override
     public void init() {
 
         leftArmServo = hardwareMap.servo.get("servo left");
@@ -27,7 +26,6 @@ public class ServoTest extends OpMode {
         rightArmServo.setDirection(Servo.Direction.REVERSE);
     }
 
-    @Override
     public void loop() {
         if (gamepad1.a) {
             if ((leftArmServo.getPosition() != 1) && (rightArmServo.getPosition() != 0)) {

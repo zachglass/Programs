@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -9,7 +8,6 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="Muses", group="Testing")
-@Disabled
 public class MusesTest extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -29,7 +27,7 @@ public class MusesTest extends OpMode {
 
     private double motorThreshold = 0.065;
 
-    //private Servo capServo = null;
+    private Servo capServo = null;
 
     private DcMotor capMotor = null;
 
@@ -57,7 +55,7 @@ public class MusesTest extends OpMode {
 
     public void stopbarInit() {
         stopBarServo = hardwareMap.servo.get("stopbar");
-        stopBarServo.setPosition(.7);
+        stopBarServo.setPosition(.5);
     }
 
     public void capMotorInit() {
@@ -68,20 +66,20 @@ public class MusesTest extends OpMode {
         button = hardwareMap.touchSensor.get("button");
     }*/
 
-    /*public void capInit() {
+    public void capInit() {
         capServo = hardwareMap.servo.get("cap");
-        capServo.setPosition(1);
-    } */
+        capServo.setPosition(0);
+    }
 
     @Override
     public void init() {
         driveInit();
-        //scoringInit();
-        //harvesterInit();
-        //stopbarInit();
+        scoringInit();
+        harvesterInit();
+        stopbarInit();
         //touchInit();
-        //capInit();
-        //capMotorInit();
+        capInit();
+        capMotorInit();
     }
 
     @Override
@@ -182,8 +180,8 @@ public class MusesTest extends OpMode {
                 stopBarServo.setPosition(0);
             }
         } else {
-            if (stopBarServo.getPosition() != .7) {
-                stopBarServo.setPosition(.7);
+            if (stopBarServo.getPosition() != .5) {
+                stopBarServo.setPosition(.5);
             }
         }
     }
@@ -193,28 +191,29 @@ public class MusesTest extends OpMode {
         telemetry.addData("Button Value: ", button.getValue());
     }*/
 
-    /*public void capLoop() {
+    public void capLoop() {
         telemetry.addData("y", gamepad1.left_bumper);
         telemetry.addData("position Capbar", capServo.getPosition());
         if (gamepad1.left_bumper) {
+            if (capServo.getPosition() != 1) {
+                capServo.setPosition(1);
+            }
+        } else {
             if (capServo.getPosition() != 0) {
                 capServo.setPosition(0);
             }
-        } else {
-            if (capServo.getPosition() != .7) {
-                capServo.setPosition(.7);
-            }
         }
-    } */
+    }
 
     @Override
     public void loop() {
         driveLoop();
-        //scoringLoop();
-        //harvesterLoop();
-        //stopbarLoop();
+        scoringLoop();
+        harvesterLoop();
+        stopbarLoop();
         //touchLoop();
-        //capMotorLoop();
+        capMotorLoop();
+        capLoop();
     }
 
     /*

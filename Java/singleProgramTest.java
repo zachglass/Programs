@@ -12,7 +12,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //I have created this program as a template for next year so that we can simplify our programs
 
 public class singleProgramTest extends OpMode {
-// The extends piece allows me to chain program together... Hopefully this will allow me to take pieces from previous programs
 
     //I have declared the variables so that the logic will work below...
 

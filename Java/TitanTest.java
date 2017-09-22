@@ -1,17 +1,19 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name="Titan... Changes Made", group="Testing")
+@TeleOp(name="Titan", group="Testing")
 public class TitanTest extends singleProgramTest {
+// The extends piece allows me to chain program together... Hopefully this will allow me to take pieces from previous programs
 
-// going to try the init because those aren't tooooo important
+    // going to try the init because those aren't tooooo important
 
     //Well there wasn't an error in the extending to the other program so I hope it works... Or it could be doing nothing :/
-// defines do not work because the variable name must be in the code to not get an error
+    // defines do not work because the variable name must be in the code to not get an error
     @Override
     public void inits() {
         super.inits();
@@ -47,8 +49,8 @@ public class TitanTest extends singleProgramTest {
         rightMotor1 = hardwareMap.dcMotor.get("right motor 1");
         rightMotor2 = hardwareMap.dcMotor.get("right motor 2");
 
-        leftMotor1.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
-        leftMotor2.setDirection(DcMotor.Direction.REVERSE);
+        leftMotor2.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
+        rightMotor1.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void linearSlidesInit() {
@@ -153,14 +155,15 @@ public class TitanTest extends singleProgramTest {
     public void armServosLoop() {
 
         if (gamepad2.right_bumper) {
-            if ((capballServo.getPosition() != .3) && (capballServo1.getPosition() != .2)) {
-                capballServo.setPosition(.3);
-                capballServo1.setPosition(.2);
-            }
-        } else {
             if ((capballServo.getPosition() != .2) && (capballServo1.getPosition() != .3)) {
                 capballServo.setPosition(.2);
                 capballServo1.setPosition(.3);
+            }
+
+        } else {
+            if ((capballServo.getPosition() != .3) && (capballServo1.getPosition() != .2)) {
+                capballServo.setPosition(.3);
+                capballServo1.setPosition(.2);
             }
         }
 
@@ -173,6 +176,8 @@ public class TitanTest extends singleProgramTest {
 
         if (gamepad2.a) {
             launchMotor.setPower(1);
+        } else if (gamepad2.b) {
+            launchMotor.setPower(-1);
         } else {
             launchMotor.setPower(0);
         }

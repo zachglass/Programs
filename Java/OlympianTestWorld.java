@@ -249,14 +249,14 @@ public class OlympianTestWorld extends OpMode {
 
     public void harvesterMotorLoop() {
         telemetry.addData("harvest", harvesterMotor.getCurrentPosition());
-        if (gamepad1.dpad_up || gamepad2.dpad_up) {
+        if (gamepad1.right_bumper || gamepad2.right_bumper) {
             harvesterMotor.setPower(1);
-        } else if (gamepad1.dpad_down || gamepad2.dpad_down) {
+        } else if (gamepad1.left_bumper || gamepad2.left_bumper) {
             harvesterMotor.setPower(-1);
         } else {
             harvesterMotor.setPower(0);
         }
-       /* if (gamepad1.a || gamepad2.a) {
+        /*if (gamepad1.dpad_down || gamepad2.dpad_down) {
             harvesterMotor.setPower(-1);
         } else {
             harvesterMotor.setPower(0);

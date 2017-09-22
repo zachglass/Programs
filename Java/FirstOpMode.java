@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name="First OpMode", group="Testing")
 @Disabled
+@TeleOp(name="First OpMode", group="Testing")
 public class FirstOpMode extends OpMode
 {
 

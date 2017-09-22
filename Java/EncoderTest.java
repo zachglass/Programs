@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 /**
  * Created by mars on 12/10/16.
  */
-@Autonomous(name="Encoders", group="Auto")
 @Disabled
+@Autonomous(name="Encoders", group="Auto")
 public class EncoderTest extends OpMode {
 
     private DcMotor leftMotor1 = null;

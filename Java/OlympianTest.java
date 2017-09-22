@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name="Olympian", group="Testing1")
 @Disabled
+@TeleOp(name="Olympian", group="Testing1")
 public class OlympianTest extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -66,9 +66,8 @@ public class OlympianTest extends OpMode {
         //pushbarServo2 = hardwareMap.servo.get("push bar 2");
         //pushbarServo2.setPosition(0);
     }
-
     public void launcherInit() {
-        launcherMotor = hardwareMap.dcMotor.get("launcher");
+        launcherMotor = hardwareMap.dcMotor.get("launcher motor 1");
         //launcherMotor2 = hardwareMap.dcMotor.get("launcher motor 2");
     }
 

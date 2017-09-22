@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -11,7 +10,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by mars on 10/30/16.
  */
 @Autonomous(name="MusesAuto", group="Auto")
-@Disabled
 public class MusesAuto extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
@@ -30,7 +28,7 @@ public class MusesAuto extends OpMode {
 
     private DcMotor scoringMotor = null;
     private Servo servo = null;
-    private Servo cap = null;
+    //private Servo cap = null;
 //    private OpticalDistanceSensor distance = null;
 
     //private TouchSensor button = null;
@@ -61,8 +59,8 @@ public class MusesAuto extends OpMode {
         servo = hardwareMap.servo.get("stopbar");
         servo.setPosition(.6);
 
-        cap = hardwareMap.servo.get("cap");
-        cap.setPosition(.7);
+        //cap = hardwareMap.servo.get("cap");
+        //cap.setPosition(.7);
 
         scoringMotor.setDirection(DcMotor.Direction.REVERSE);
 
@@ -76,15 +74,15 @@ public class MusesAuto extends OpMode {
         scoringMotor.setTargetPosition(0);
         //leftMotor1.setTargetPosition(0);
         //leftMotor2.setTargetPosition(0);
-        rightMotor1.setTargetPosition(0);
-        //rightMotor2.setTargetPosition(0);
+        //rightMotor1.setTargetPosition(0);
+        rightMotor2.setTargetPosition(0);
     }
 
     @Override
     public void init_loop() {
         telemetry.addData("stopbar", servo.getPosition());
         telemetry.addData("scoring motor", scoringMotor.getCurrentPosition());
-        telemetry.addData("cap", cap.getPosition());
+        //telemetry.addData("cap", cap.getPosition());
 //        telemetry.addData("OpLight: ", distance.getLightDetected());
 //        telemetry.addData("OpRawLight: ", distance.getRawLightDetected());
 //        telemetry.addData("OpRawLightMax: ", distance.getRawLightDetectedMax());
@@ -95,11 +93,30 @@ public class MusesAuto extends OpMode {
     //}
 
     @Override
+    public void start() {
+        runtime.reset();
+    }
+
+    public void testing() {
+        //Technically this should work...
+
+        leftMotor1.setTargetPosition(1000);
+        if (leftMotor1.getCurrentPosition() <= leftMotor1.getTargetPosition()) {
+            leftMotor1.setPower(1);
+        } else if (leftMotor1.getCurrentPosition() >= leftMotor1.getTargetPosition()) {
+            leftMotor1.setPower(-1);
+        } else {
+            leftMotor1.setPower(0);
+        }
+    }
+
+    @Override
     public void loop() {
 
         telemetry.addData("Pressed: ", pressed);
         telemetry.addData("stopbar", servo.getPosition());
         telemetry.addData("scoring motor", scoringMotor.getCurrentPosition());
+        telemetry.addData("drive motor that i am using", rightMotor2.getCurrentPosition());
         telemetry.addData("Runtime: ", runtime.toString());
 
 /*
@@ -131,19 +148,17 @@ public class MusesAuto extends OpMode {
                     } else {
                         if (runtime.time() >= 9) {
                             scoringMotor.setPower(0);
-                            /* else {
-                                if (rightMotor1.getCurrentPosition() >= 6500) {
-                                    leftMotor1.setPower(0);
-                                    leftMotor2.setPower(0);
-                                    rightMotor1.setPower(0);
-                                    rightMotor2.setPower(0);
-                                } else {
-                                    leftMotor1.setPower(-.87);
-                                    leftMotor2.setPower(.87);
-                                    rightMotor1.setPower(1);
-                                    rightMotor2.setPower(-1);
-                                }
-                            }*/
+                            if (runtime.time() > 14) {
+                                leftMotor1.setPower(0);
+                                leftMotor2.setPower(0);
+                                rightMotor1.setPower(0);
+                                rightMotor2.setPower(0);
+                            } else {
+                                leftMotor1.setPower(-1);
+                                leftMotor2.setPower(1);
+                                rightMotor1.setPower(1);
+                                rightMotor2.setPower(-1);
+                            }
                         }
                     }
                 }
